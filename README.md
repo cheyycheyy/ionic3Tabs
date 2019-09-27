@@ -25,5 +25,4 @@ System:
 
 end
 
-by cheyunyi
 
