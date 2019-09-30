@@ -23,6 +23,10 @@ System:
    OS     : Windows 10
 ~~~
 
-end
+### 操作
+~~~shell
+> ionic serve
+> ionic build --prod
+~~~
 
 
