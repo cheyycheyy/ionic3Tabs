@@ -4,7 +4,7 @@ import { DiscoveryPage } from './discovery';
 
 @NgModule({
   declarations: [
-    DiscoveryPage,
+    // DiscoveryPage,   // ionic build --prod出问题
   ],
   imports: [
     IonicPageModule.forChild(DiscoveryPage),
