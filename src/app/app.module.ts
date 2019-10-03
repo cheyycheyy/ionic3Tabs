@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast/ngx';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { DiscoveryPage } from '../pages/discovery/discovery';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -23,7 +22,6 @@ import { IonicStorageModule } from '@ionic/storage';
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     DiscoveryPage
@@ -43,7 +41,6 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     DiscoveryPage
