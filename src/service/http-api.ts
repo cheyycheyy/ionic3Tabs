@@ -37,11 +37,11 @@ export class HttpApi {
 
   }
 
-  getUserInfo(callback) {
-    this.httpService.get("https://imoocqa.gugujiankong.com/api/feeds/get", {})
+  get_articles(callback) {
+    this.httpService.get("http://api.icheyy.top/api/v1/articles", {})
       .map(res => res.json())
       .subscribe(res => {
-        console.log(JSON.stringify(res));
+        callback(res);
       })
   }
 

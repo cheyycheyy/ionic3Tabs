@@ -10,4 +10,4 @@ import { DiscoveryPage } from './discovery';
     IonicPageModule.forChild(DiscoveryPage),
   ],
 })
-export class DiscoveryPageModule {}
+export class DiscoveryPageModule { }

@@ -5,34 +5,34 @@
 </ion-header>
 
 <ion-content class="cards-bg">
-  <ion-card>
-    <img src="assets/imgs/nin-live.png" />
+  <ion-card *ngFor="let article of articles">
+    <img [src]="article.cover" />
     <ion-card-content>
       <ion-card-title>
-        Nine Inch Nails Live
+        {{article.title}}
       </ion-card-title>
       <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+        {{article.abstract}} ...
       </p>
     </ion-card-content>
 
     <ion-row no-padding>
       <ion-col>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='star'></ion-icon>
-          Favorite
+        <button ion-button clear small color="primary" icon-start>
+          <ion-icon name='eye'></ion-icon>
+          阅读 (20)
         </button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='musical-notes'></ion-icon>
-          Listen
+        <button ion-button clear small color="primary" icon-start>
+          <ion-icon name='ios-chatbubbles'></ion-icon>
+          评论 (3)
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='share-alt'></ion-icon>
-          分享
+        <button ion-button clear small color="primary" icon-start>
+          <ion-icon name='md-heart'></ion-icon>
+          点赞 (7)
         </button>
       </ion-col>
     </ion-row>

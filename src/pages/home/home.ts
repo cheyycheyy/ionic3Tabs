@@ -8,6 +8,9 @@ import { HttpApi } from '../../service/http-api';
 })
 export class HomePage {
 
+  articles: any[];
+  tagName: '';
+
   constructor(public navCtrl: NavController,
     public http: HttpApi) {
 
@@ -15,8 +18,15 @@ export class HomePage {
 
   ionViewDidEnter() {
     let self = this;
-    self.http.getUserInfo(user => {
-
+    self.http.get_articles(res => {
+      // console.log(JSON.stringify(res));
+      if (res.status == 1) {
+        this.articles = res.data.data;
+        for (let index in this.articles) {
+          this.articles[index].abstract = this.articles[index].body.substring(0, 150)
+            .replace(/<\/?.+?>/g, "").replace(/ /g, "").replace(/&nbsp;/g, ' ').replace(/#/g, '');
+        }
+      }
     });
   }
 
