@@ -1,3 +1,9 @@
 page-home {
+  .title-main {
+    color: color($colors, primary);
+  }
 
+  .title-sub {
+    color: color($colors, secondary);
+  }
 }

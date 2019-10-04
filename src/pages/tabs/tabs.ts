@@ -1,5 +1,5 @@
+import { AboutMyPage } from './../about-my/about-my';
 import { Component } from '@angular/core';
-import { DiscoveryPage } from '../discovery/discovery';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -8,7 +8,7 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tabHome = HomePage;
-  tabDiscovery = DiscoveryPage;
+  tabAboutMy = AboutMyPage;
 
   constructor() {
 

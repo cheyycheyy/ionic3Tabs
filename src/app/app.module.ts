@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast/ngx';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AboutPage } from '../pages/about/about';
-import { DiscoveryPage } from '../pages/discovery/discovery';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { RestProvider } from '../providers/rest/rest';
@@ -17,18 +16,21 @@ import { NativeModule } from '../service/native-utils';
 import { UtilsModule } from '../service/utils';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { AboutMyPage } from '../pages/about-my/about-my';
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     HomePage,
-    TabsPage,
-    DiscoveryPage
+    AboutMyPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
+    }),
     HttpSvModule,
     HttpApiModule,
     HttpModule,
@@ -42,8 +44,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     AboutPage,
     HomePage,
-    TabsPage,
-    DiscoveryPage
+    AboutMyPage,
+    TabsPage
   ],
   providers: [
     StatusBar,

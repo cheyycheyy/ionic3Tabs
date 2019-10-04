@@ -58,19 +58,19 @@ export class HttpService {
         });
     }
 
-    // public requestWithoutLoading(url: string, options: RequestOptionsArgs): Observable<Response> {
-    //     return Observable.create((observer) => {
-    //         console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
-    //         let observable = this.http.request(url, options).subscribe(res => {
-    //             console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
-    //             observer.next(res);
-    //             observable.unsubscribe();
-    //         }, err => {
-    //             observer.error(err);
-    //             observable.unsubscribe();
-    //         });
-    //     });
-    // }
+    public requestWithoutLoading(url: string, options: RequestOptionsArgs): Observable<Response> {
+        return Observable.create((observer) => {
+            console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
+            let observable = this.http.request(url, options).subscribe(res => {
+                console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
+                observer.next(res);
+                observable.unsubscribe();
+            }, err => {
+                observer.error(err);
+                observable.unsubscribe();
+            });
+        });
+    }
 
     // public upload(url, body): Observable<Response> {
     //     return this.request(this.addTimeStamp(url), new RequestOptions({
@@ -83,7 +83,7 @@ export class HttpService {
     // }
 
     public get(url: string, paramMap?: any): Observable<Response> {
-        return this.request(url, new RequestOptions({
+        return this.requestWithoutLoading(url, new RequestOptions({
             method: RequestMethod.Get,
             search: HttpService.buildURLSearchParams(paramMap)
         }));
