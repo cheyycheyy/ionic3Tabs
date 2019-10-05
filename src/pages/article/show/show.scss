@@ -1,0 +1,57 @@
+page-show {
+
+  ion-content {
+    background-color: white !important;
+  }
+
+  .article {
+    .article-title {
+      font-size: 30px;
+      font-weight: bold;
+      float: left;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: tomato;
+    }
+
+    .article-edit {
+      padding-top: 5px;
+    }
+  }
+
+  .article-author {
+    clear: both;
+    margin-top: 30px;
+    position: relative;
+
+    img {
+      position: absolute;
+      width: 48px;
+      border: 1px solid #aaa;
+      border-radius: 100px;
+      margin-top: 5px;
+    }
+
+    .article-author-detail {
+      padding-top: 10px;
+      padding-left: 65px;
+
+      .article-detail {
+        padding-top: 6px;
+        color: #999;
+        font-size: 13px;
+
+        span {
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
+  .article-body {
+    padding-top: 35px;
+    line-height: 25px;
+  }
+}

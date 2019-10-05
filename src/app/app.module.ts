@@ -17,6 +17,7 @@ import { UtilsModule } from '../service/utils';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { AboutMyPage } from '../pages/about-my/about-my';
+import { ShowPage } from '../pages/article/show/show';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AboutMyPage } from '../pages/about-my/about-my';
     AboutPage,
     HomePage,
     AboutMyPage,
-    TabsPage
+    TabsPage,
+    ShowPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { AboutMyPage } from '../pages/about-my/about-my';
     AboutPage,
     HomePage,
     AboutMyPage,
-    TabsPage
+    TabsPage,
+    ShowPage
   ],
   providers: [
     StatusBar,

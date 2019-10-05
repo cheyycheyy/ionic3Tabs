@@ -83,91 +83,92 @@ export class HttpService {
     // }
 
     public get(url: string, paramMap?: any): Observable<Response> {
+        return this.request(url, new RequestOptions({
+            method: RequestMethod.Get,
+            search: HttpService.buildURLSearchParams(paramMap)
+        }));
+    }
+
+    public getWithoutLoading(url: string, paramMap?: any): Observable<Response> {
         return this.requestWithoutLoading(url, new RequestOptions({
             method: RequestMethod.Get,
             search: HttpService.buildURLSearchParams(paramMap)
         }));
     }
-    /*
-        public getWithoutLoading(url: string, paramMap?: any): Observable<Response> {
-            return this.requestWithoutLoading(url, new RequestOptions({
-                method: RequestMethod.Get,
-                search: HttpService.buildURLSearchParams(paramMap)
-            }));
-        }
-    
-        public post(url: string, body: any): Observable<Response> {
-            return this.request(this.addTimeStamp(url), new RequestOptions({
-                method: RequestMethod.Post,
-                body: JSON.stringify(body),
-                headers: new Headers({
-                    'Content-Type': 'application/json; charset=UTF-8'
-                })
-            }));
-        }
-    
-        public postWithoutLoading(url: string, body: any): Observable<Response> {
-            return this.requestWithoutLoading(this.addTimeStamp(url), new RequestOptions({
-                method: RequestMethod.Post,
-                body: JSON.stringify(body),
-                headers: new Headers({
-                    'Content-Type': 'application/json; charset=UTF-8'
-                })
-            }));
-        }
-    
-        public postFormData(url: string, paramMap: any): Observable<Response> {
-            return this.request(url, new RequestOptions({
-                method: RequestMethod.Post,
-                search: HttpService.buildURLSearchParams(paramMap).toString(),
-                headers: new Headers({
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                })
-            }));
-        }
-    
-        public postAuth(url: string, paramMap: any, header?: Headers): Observable<Response> {
-            return this.request(url, new RequestOptions({
-                method: RequestMethod.Post,
-                search: HttpService.buildURLSearchParams(paramMap).toString(),
-                headers: header
-            }));
-        }
-    
-        public put(url: string, body: any): Observable<Response> {
-            return this.request(this.addTimeStamp(url), new RequestOptions({
-                method: RequestMethod.Put,
-                body: body
-            }));
-        }
-    
-        public delete(url: string, paramMap: any): Observable<Response> {
-            return this.request(url, new RequestOptions({
-                method: RequestMethod.Delete,
-                search: HttpService.buildURLSearchParams(paramMap).toString()
-            }));
-        }
-    
-        public patch(url: string, body: any): Observable<Response> {
-            return this.request(this.addTimeStamp(url), new RequestOptions({
-                method: RequestMethod.Patch,
-                body: body
-            }));
-        }
-    
-        public head(url: string, paramMap: any): Observable<Response> {
-            return this.request(url, new RequestOptions({
-                method: RequestMethod.Head,
-                search: HttpService.buildURLSearchParams(paramMap).toString()
-            }));
-        }
-    
-        public options(url: string, paramMap: any): Observable<Response> {
-            return this.request(url, new RequestOptions({
-                method: RequestMethod.Options,
-                search: HttpService.buildURLSearchParams(paramMap).toString()
-            }));
-        }*/
+
+    /*   
+       public post(url: string, body: any): Observable<Response> {
+           return this.request(this.addTimeStamp(url), new RequestOptions({
+               method: RequestMethod.Post,
+               body: JSON.stringify(body),
+               headers: new Headers({
+                   'Content-Type': 'application/json; charset=UTF-8'
+               })
+           }));
+       }
+   
+       public postWithoutLoading(url: string, body: any): Observable<Response> {
+           return this.requestWithoutLoading(this.addTimeStamp(url), new RequestOptions({
+               method: RequestMethod.Post,
+               body: JSON.stringify(body),
+               headers: new Headers({
+                   'Content-Type': 'application/json; charset=UTF-8'
+               })
+           }));
+       }
+   
+       public postFormData(url: string, paramMap: any): Observable<Response> {
+           return this.request(url, new RequestOptions({
+               method: RequestMethod.Post,
+               search: HttpService.buildURLSearchParams(paramMap).toString(),
+               headers: new Headers({
+                   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+               })
+           }));
+       }
+   
+       public postAuth(url: string, paramMap: any, header?: Headers): Observable<Response> {
+           return this.request(url, new RequestOptions({
+               method: RequestMethod.Post,
+               search: HttpService.buildURLSearchParams(paramMap).toString(),
+               headers: header
+           }));
+       }
+   
+       public put(url: string, body: any): Observable<Response> {
+           return this.request(this.addTimeStamp(url), new RequestOptions({
+               method: RequestMethod.Put,
+               body: body
+           }));
+       }
+   
+       public delete(url: string, paramMap: any): Observable<Response> {
+           return this.request(url, new RequestOptions({
+               method: RequestMethod.Delete,
+               search: HttpService.buildURLSearchParams(paramMap).toString()
+           }));
+       }
+   
+       public patch(url: string, body: any): Observable<Response> {
+           return this.request(this.addTimeStamp(url), new RequestOptions({
+               method: RequestMethod.Patch,
+               body: body
+           }));
+       }
+   
+       public head(url: string, paramMap: any): Observable<Response> {
+           return this.request(url, new RequestOptions({
+               method: RequestMethod.Head,
+               search: HttpService.buildURLSearchParams(paramMap).toString()
+           }));
+       }
+   
+       public options(url: string, paramMap: any): Observable<Response> {
+           return this.request(url, new RequestOptions({
+               method: RequestMethod.Options,
+               search: HttpService.buildURLSearchParams(paramMap).toString()
+           }));
+       }*/
 
     /**
      * 将对象转为查询参数
@@ -177,7 +178,7 @@ export class HttpService {
     private static buildURLSearchParams(paramMap): URLSearchParams {
         let params: URLSearchParams = new URLSearchParams();
         // 在路径中增加一个时间戳参数，防止部分WebView的缓存
-        params.set('RandomTimeStampAvoidCache', new Date().getTime() + '');
+        // params.set('RandomTimeStampAvoidCache', new Date().getTime() + '');
         if (!paramMap) {
             return params;
         }

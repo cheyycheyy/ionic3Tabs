@@ -38,7 +38,15 @@ export class HttpApi {
   }
 
   get_articles(callback) {
-    this.httpService.get("http://api.icheyy.top/api/v1/articles", {})
+    this.httpService.getWithoutLoading("http://api.icheyy.top/api/v1/articles", {})
+      .map(res => res.json())
+      .subscribe(res => {
+        callback(res);
+      })
+  }
+
+  get_article(id: string, callback) {
+    this.httpService.get("http://api.icheyy.top/api/v1/articles/" + id, {})
       .map(res => res.json())
       .subscribe(res => {
         callback(res);

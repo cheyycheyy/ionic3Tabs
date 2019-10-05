@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="cards-bg">
-  <ion-card *ngFor="let article of articles">
+  <ion-card *ngFor="let article of articles" (click)="showArticle(article.id)">
     <img [src]="article.cover" />
     <ion-card-content>
       <ion-card-title>
@@ -23,19 +23,19 @@
       <ion-col>
         <button ion-button clear small color="primary" icon-start>
           <ion-icon name='eye'></ion-icon>
-          阅读 (20)
+          阅读 ({{ article.view_count }})
         </button>
       </ion-col>
       <ion-col text-center>
         <button ion-button clear small color="primary" icon-start>
           <ion-icon name='ios-chatbubbles'></ion-icon>
-          评论 (3)
+          评论 ({{ article.comments_count }})
         </button>
       </ion-col>
       <ion-col text-right>
         <button ion-button clear small color="primary" icon-start>
           <ion-icon name='md-heart'></ion-icon>
-          点赞 (7)
+          点赞 ({{ article.likes_count }})
         </button>
       </ion-col>
     </ion-row>
