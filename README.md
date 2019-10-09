@@ -26,6 +26,7 @@ System:
 ### 操作
 ~~~shell
 > ionic serve
+> npm install
 > ionic build --prod
 ~~~
 
