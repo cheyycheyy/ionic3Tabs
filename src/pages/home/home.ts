@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpApi } from '../../service/http-api';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -32,7 +33,7 @@ export class HomePage {
   }
 
   showArticle(articleId) {
-    this.navCtrl.push(ShowPage, { id: articleId });
+    this.navCtrl.push('ShowPage', { id: articleId });
   }
 
 }

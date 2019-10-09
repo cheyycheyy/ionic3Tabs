@@ -12,7 +12,7 @@ import hljs from 'highlight.js'
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+@IonicPage()
 @Component({
   selector: 'page-show',
   templateUrl: 'show.html',

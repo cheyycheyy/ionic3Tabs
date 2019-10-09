@@ -7,8 +7,8 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tabHome = HomePage;
-  tabAboutMy = AboutMyPage;
+  tabHome = 'HomePage';
+  tabAboutMy = 'AboutMyPage';
 
   constructor() {
 

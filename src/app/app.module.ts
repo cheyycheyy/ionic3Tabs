@@ -6,8 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast/ngx';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { AboutPage } from '../pages/about/about';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { RestProvider } from '../providers/rest/rest';
 import { HttpApiModule } from '../service/http-api';
@@ -16,17 +14,12 @@ import { NativeModule } from '../service/native-utils';
 import { UtilsModule } from '../service/utils';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
-import { AboutMyPage } from '../pages/about-my/about-my';
 import { ShowPage } from '../pages/article/show/show';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    HomePage,
-    AboutMyPage,
-    TabsPage,
-    ShowPage
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -44,11 +37,7 @@ import { ShowPage } from '../pages/article/show/show';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    HomePage,
-    AboutMyPage,
-    TabsPage,
-    ShowPage
+    TabsPage
   ],
   providers: [
     StatusBar,

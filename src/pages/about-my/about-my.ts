@@ -24,7 +24,7 @@ export class AboutMyPage {
   }
 
   onClickAbout() {
-    this.navCtrl.push(AboutPage);
+    this.navCtrl.push("AboutPage");
   }
 
 }
