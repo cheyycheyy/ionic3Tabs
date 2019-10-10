@@ -1,6 +1,5 @@
-import { ShowPage } from './../article/show/show';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HttpApi } from '../../providers/http-api';
 
 @IonicPage()
