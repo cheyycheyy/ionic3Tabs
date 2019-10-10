@@ -7,13 +7,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast/ngx';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { TabsPage } from '../pages/tabs/tabs';
-import { RestProvider } from '../providers/rest/rest';
-import { HttpApiModule } from '../service/http-api';
 import { HttpSvModule } from '../service/http-service';
 import { NativeModule } from '../service/native-utils';
 import { UtilsModule } from '../service/utils';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { HttpApi } from '../providers/http-api';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { IonicStorageModule } from '@ionic/storage';
       tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
     }),
     HttpSvModule,
-    HttpApiModule,
     HttpModule,
     UtilsModule,
     NativeModule,
@@ -42,9 +40,9 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    RestProvider,
     HTTP,
-    Toast
+    Toast,
+    HttpApi
   ]
 })
 export class AppModule { }

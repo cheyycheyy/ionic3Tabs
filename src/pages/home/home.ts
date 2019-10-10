@@ -1,7 +1,7 @@
 import { ShowPage } from './../article/show/show';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HttpApi } from '../../service/http-api';
+import { HttpApi } from '../../providers/http-api';
 
 @IonicPage()
 @Component({

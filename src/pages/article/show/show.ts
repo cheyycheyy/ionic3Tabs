@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpApi } from '../../../service/http-api';
+import { HttpApi } from '../../../providers/http-api';
 import Marked from 'marked'
 
 import { DomSanitizer } from '@angular/platform-browser';
