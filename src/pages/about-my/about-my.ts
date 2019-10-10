@@ -27,4 +27,8 @@ export class AboutMyPage {
     this.navCtrl.push("AboutPage");
   }
 
+  onClickTest() {
+    this.navCtrl.push("TestPage");
+  }
+
 }

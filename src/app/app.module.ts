@@ -14,7 +14,6 @@ import { NativeModule } from '../service/native-utils';
 import { UtilsModule } from '../service/utils';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
-import { ShowPage } from '../pages/article/show/show';
 
 @NgModule({
   declarations: [

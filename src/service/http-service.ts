@@ -41,9 +41,11 @@ export class HttpService {
 
     }
 
-    public request(url: string, options: RequestOptionsArgs): Observable<Response> {
+    public request(url: string, options: RequestOptionsArgs, isLoading: boolean = true): Observable<Response> {
         return Observable.create((observer) => {
-            this.nativeutils.showLoading();
+            if (isLoading) {
+                this.nativeutils.showLoading();
+            }
             console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
             let observable = this.http.request(url, options).subscribe(res => {
                 this.nativeutils.loadingDismiss();
@@ -51,6 +53,7 @@ export class HttpService {
                 observer.next(res);
                 observable.unsubscribe();
             }, err => {
+                console.log('%c 请求失败 %c', 'color:red', '', 'url', url, 'options', options, 'err', err);
                 this.requestFailed(url, options, err);//处理请求失败
                 observer.error(err);
                 observable.unsubscribe();
@@ -58,18 +61,18 @@ export class HttpService {
         });
     }
 
-    public requestWithoutLoading(url: string, options: RequestOptionsArgs): Observable<Response> {
-        return Observable.create((observer) => {
-            console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
-            let observable = this.http.request(url, options).subscribe(res => {
-                console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
-                observer.next(res);
-                observable.unsubscribe();
-            }, err => {
-                observer.error(err);
-                observable.unsubscribe();
-            });
-        });
+    public get(url: string, paramMap?: any): Observable<Response> {
+        return this.request(url, new RequestOptions({
+            method: RequestMethod.Get,
+            search: HttpService.buildURLSearchParams(paramMap)
+        }));
+    }
+
+    public getWithoutLoading(url: string, paramMap?: any): Observable<Response> {
+        return this.request(url, new RequestOptions({
+            method: RequestMethod.Get,
+            search: HttpService.buildURLSearchParams(paramMap)
+        }), false);
     }
 
     // public upload(url, body): Observable<Response> {
@@ -81,20 +84,6 @@ export class HttpService {
     //         // })
     //     }))
     // }
-
-    public get(url: string, paramMap?: any): Observable<Response> {
-        return this.request(url, new RequestOptions({
-            method: RequestMethod.Get,
-            search: HttpService.buildURLSearchParams(paramMap)
-        }));
-    }
-
-    public getWithoutLoading(url: string, paramMap?: any): Observable<Response> {
-        return this.requestWithoutLoading(url, new RequestOptions({
-            method: RequestMethod.Get,
-            search: HttpService.buildURLSearchParams(paramMap)
-        }));
-    }
 
     /*   
        public post(url: string, body: any): Observable<Response> {
@@ -247,7 +236,7 @@ export class HttpService {
                 msg = '服务器出错，请稍后再试';
             }
         }
-        this.nativeutils.showSureAlert('请求失败', msg, '确定');
+        this.nativeutils.showAlert('请求失败', msg, '确定');
     }
 
 }

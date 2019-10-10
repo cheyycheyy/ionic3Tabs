@@ -22,6 +22,7 @@ export class NativeUtils {
   private isLoading: boolean = false;
   private alert: Alert;
   private isAlertShowing: boolean = false;
+
   constructor(
     public toastCtrl: ToastController,
     public toast: Toast,
@@ -35,6 +36,7 @@ export class NativeUtils {
   ) {
 
   }
+
   /**
    * 退出应用
    */
@@ -43,7 +45,7 @@ export class NativeUtils {
   }
 
   /**
-  * 统一调用此方法显示提示信息
+  * 显示提示信息
   * @param message 信息内容
   * @param duration 显示时长
   * @param position 显示位置
@@ -60,6 +62,7 @@ export class NativeUtils {
       }).present();
     }
   };
+
   showToastLong(message: string) {
     this.toast.showLongBottom(message).subscribe();
   };
@@ -67,43 +70,26 @@ export class NativeUtils {
     this.toast.showShortBottom(message).subscribe();
   }
 
-  showLoading(message: string = '加载中...') {
+  showLoading(message: string = '加载中...', duration: number = 3000) {
     let self = this;
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: message,
-      duration: 3 * 1000,
+      duration: duration,
       dismissOnPageChange: false
     });
     this.isLoading = true;
     this.loading.onDidDismiss(() => {
       self.isLoading = false;
       self.loading = null;
-      console.log('Dismissed loading------');
-    });
-
-    this.loading.present();
-  }
-
-  showLoadingToCallDismiss(message: string = '加载中...') {
-    let self = this;
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: message,
-      dismissOnPageChange: false
-    });
-    this.isLoading = true;
-    this.loading.onDidDismiss(() => {
-      self.isLoading = false;
-      self.loading = null;
-      console.log('Dismissed loading------');
+      console.log('Dismissed loading');
     });
 
     this.loading.present();
   }
 
   public loadingDismiss() {
-    console.log('Dismissed loading----0.0');
+    console.log('Dismissed loading');
     let self = this;
     if (this.isLoading && this.loading) {
       // setTimeout(function () {
@@ -112,36 +98,33 @@ export class NativeUtils {
       self.isLoading = false;
       // }, 200);
     }
+  }
+
+  showAlert(title: string, message: string, text: string = null, callback?: any) {
+    if (!this.isAlertShowing) {
+      if (text) {
+        this.alert = this.alertCtrl.create(
+          {
+            title: title, message: message, enableBackdropDismiss: true, buttons: [{
+              text: text,
+              handler: () => {
+                callback && callback();
+              }
+            }]
+          }
+        );
+      } else {
+        this.alert = this.alertCtrl.create(
+          { title: title, message: message, enableBackdropDismiss: true }
+        );
+      }
+      this.alert.present();
+      this.isAlertShowing = true;
+      this.alert.onDidDismiss(() => { this.isAlertShowing = false });
+    }
+  }
 
 
-  }
-  showMessageAlert(title: string, message: string) {
-    // this.alert = this.alertCtrl.create(
-    //     { title: title, message: message, enableBackdropDismiss: true }
-    // );
-    // if (!this.isAlertShowing) {
-    //     this.alert.present();
-    //     this.isAlertShowing = true;
-    // }
-    // this.alert.onDidDismiss(() => { this.isAlertShowing = false });
-  }
-  showSureAlert(title: string, message: string, text: string, callback?: any) {
-    // this.alert = this.alertCtrl.create(
-    //     {
-    //         title: title, message: message, enableBackdropDismiss: true, buttons: [{
-    //             text: text,
-    //             handler: () => {
-    //                 callback && callback();
-    //             }
-    //         }]
-    //     }
-    // );
-    // if (!this.isAlertShowing) {
-    //     this.alert.present();
-    //     this.isAlertShowing = true;
-    // }
-    // this.alert.onDidDismiss(() => { this.isAlertShowing = false });
-  }
   showChoiceAlert(title: string, message: string, sureText: string, callback) {
     this.alert = this.alertCtrl.create(
       { title: title, message: message, enableBackdropDismiss: true, buttons: [{ text: '取消', handler: () => { } }, { text: sureText, handler: () => { callback(); } }] }
@@ -303,6 +286,8 @@ export class NativeUtils {
     //     e => console.log('Error openening file', e)
     //     );
   }
+
+
   getFileType(fullPath: string): string {
     let result;
     switch (fullPath.slice(fullPath.lastIndexOf(".") + 1)) {
@@ -321,6 +306,8 @@ export class NativeUtils {
     }
     return result;
   }
+
+
   openImage(filePath: string) {
     // this.photoViewer.show(filePath);
   }
@@ -351,9 +338,9 @@ export class NativeUtils {
 
   /*********************事件管理*****************/
   /**
-      * 注册事件
-      *
-      */
+  * 注册事件
+  *
+  */
   regist(key: string, callback: Function) {
     this.events.subscribe(key, callback);
   }
@@ -374,11 +361,6 @@ export class NativeUtils {
 
 
 
-
-
-
-
-
   /**
    * 获取imei
    * @memberof NativeUtils
@@ -390,6 +372,8 @@ export class NativeUtils {
     );
 
   }
+
+
   /**
    * 手机振动
    *
